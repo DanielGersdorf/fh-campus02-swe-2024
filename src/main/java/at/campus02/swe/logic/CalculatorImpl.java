@@ -31,15 +31,24 @@ public class CalculatorImpl implements Calculator {
                 double[] b = new double[(int) vektorsize];
 
                 for (int i = 0; i < vektorsize; i++) {
+                    if (b[i] > Double.MAX_VALUE) {
+                        throw new CalculatorException("Value exceeds max double value");
+                    }else
                     b[i] = pop();
                 }
 
                 for (int i = 0; i < vektorsize; i++) {
+                    if (a[i] > Double.MAX_VALUE) {
+                        throw new CalculatorException("Value exceeds max double value");
+                    } else
                     a[i] = pop();
                 }
 
                 for (int i = 0; i < vektorsize; i++) {
-                    result += a[i] * b[i];
+                    if (result > Double.MAX_VALUE) {
+                        throw new CalculatorException("Value exceeds max double value");
+                    }else
+                    result = result +( a[i] * b[i] );
                 }
 
                 return result;

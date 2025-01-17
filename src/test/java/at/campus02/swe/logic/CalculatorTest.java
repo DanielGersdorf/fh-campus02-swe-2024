@@ -1,8 +1,5 @@
 package at.campus02.swe.logic;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 
 import at.campus02.swe.Calculator;
@@ -10,6 +7,8 @@ import at.campus02.swe.CalculatorException;
 import at.campus02.swe.Calculator.Operation;
 
 import java.rmi.server.ExportException;
+
+import static org.junit.Assert.*;
 
 public class CalculatorTest {
 
@@ -130,6 +129,58 @@ public class CalculatorTest {
 
     }
 
+    @Test
+    public void SkalarProdukt() throws Exception {
+
+        //Setup
+        Calculator cal = new CalculatorImpl();
+        //a
+        cal.push(115);
+        cal.push(15);
+        cal.push(51);
+        cal.push(15);
+        cal.push(151);
+        //b
+        cal.push(31);
+        cal.push(2);
+        cal.push(3);
+        cal.push(4);
+        cal.push(5);
+        //vector size
+        cal.push(5);
+
+        assertEquals(4563,cal.perform(Operation.dotproduct), 0.1);
+
+    }
+    @Test
+    public void SkalarProduktNegativ() throws Exception {
+
+        //Setup
+        Calculator cal = new CalculatorImpl();
+        try {
+
+            //a
+            cal.push(Double.MAX_VALUE + 1);
+            cal.push(15);
+            cal.push(51);
+            cal.push(15);
+            cal.push(151);
+            //b
+            cal.push(31);
+            cal.push(2);
+            cal.push(3);
+            cal.push(4);
+            cal.push(5);
+            //vector size
+            cal.push(5);
+
+            cal.perform(Operation.dotproduct);
+
+        } catch (CalculatorException e) {
+            assertEquals("Value exceeds max double value", e.getMessage());
+        }
+
+    }
 
 
     //
