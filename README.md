@@ -1,2 +1,2 @@
 # Stack Calculator
-Gruppe 1
+Gruppe A
