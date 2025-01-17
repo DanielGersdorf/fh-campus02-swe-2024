@@ -21,6 +21,30 @@ public class CalculatorImpl implements Calculator {
         {double c = pop();
             return Math.sin(c);}
 
+        if (op.equals(Operation.dotproduct)) {
+            if (stack_.empty()) {
+                throw new CalculatorException("Stack is empty");
+            } else {
+                double vektorsize = pop();
+                double result = 0.0;
+                double[] a = new double[(int) vektorsize];
+                double[] b = new double[(int) vektorsize];
+
+                for (int i = 0; i < vektorsize; i++) {
+                    b[i] = pop();
+                }
+
+                for (int i = 0; i < vektorsize; i++) {
+                    a[i] = pop();
+                }
+
+                for (int i = 0; i < vektorsize; i++) {
+                    result += a[i] * b[i];
+                }
+
+                return result;
+            }
+        }
 
 
         else {
@@ -64,5 +88,7 @@ public class CalculatorImpl implements Calculator {
     public void clear() {
         stack_.clear();
     }
+
+
 
 }
