@@ -126,12 +126,9 @@ public class CalculatorTest {
         //Setup
         Calculator cal = new CalculatorImpl();
         cal.push(1);
-        assertEquals(0.8 ,cal.perform(Operation.sin), 0.1);
+        assertEquals(0.8, cal.perform(Operation.sin), 0.1);
 
     }
-
-
-
 
 
 
